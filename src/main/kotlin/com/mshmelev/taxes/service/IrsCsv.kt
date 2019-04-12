@@ -43,7 +43,7 @@ class IrsCsv(private val irsDataRepository: IrsDataRepository) {
             while (true) {
                 // Read the next CSV row
                 record = csvReader.readNext()
-                if (record == null || record.size == 0) {
+                if (record == null || record.isEmpty()) {
                     // No more rows? We're done then...
                     break
                 }
