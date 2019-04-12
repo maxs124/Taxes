@@ -3,11 +3,7 @@ package com.mshmelev.taxes.service
 import au.com.bytecode.opencsv.CSVParser
 import au.com.bytecode.opencsv.CSVReader
 import com.mshmelev.taxes.db.domain.BudgetData
-import com.mshmelev.taxes.db.domain.IrsData
 import com.mshmelev.taxes.db.repository.BudgetDataRepository
-import com.mshmelev.taxes.db.repository.IrsDataRepository
-import com.mshmelev.taxes.utils.parseAsDouble
-import com.mshmelev.taxes.utils.parseAsInt
 import com.mshmelev.taxes.utils.parseAsLong
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -52,10 +48,10 @@ class BudgetCsv(private val budgetDataRepository: BudgetDataRepository) {
                 }
 
                 val budgetData = BudgetData(
-                        department = record[1],
-                        budgetAmount = record[2].parseAsLong())
+                        department = record[0],
+                        budgetAmount = record[1].parseAsLong())
 
-                //println(irsDataRepository.save(irsData))
+                println("${budgetData.department} = ${budgetData.budgetAmount}")
                 budgetDataRepository.save(budgetData)
                 counter++
             }

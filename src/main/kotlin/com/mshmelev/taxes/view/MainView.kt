@@ -2,7 +2,7 @@ package com.mshmelev.taxes.view
 
 import com.mshmelev.taxes.service.FinderService
 import com.mshmelev.taxes.utils.calculator
-import com.vaadin.flow.component.html.H1
+import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.router.Route
@@ -15,7 +15,7 @@ import com.vaadin.flow.spring.annotation.UIScope
 @Route
 class MainView(private val finderService: FinderService) : VerticalLayout() {
     private fun initialize() {
-        val message = H1()
+        val message = Label()
         val textField = TextField("Zip Code", "Zip Code")
 //      textField.addValueChangeListener { event -> message.text = "${finderService.getTaxPaidByZipCode(event.value)} Dollars" }
 
@@ -23,7 +23,7 @@ class MainView(private val finderService: FinderService) : VerticalLayout() {
             val paidTax = finderService.getTaxPaidByZipCode(event.value)
             val budget = finderService.getBudget()
 
-            calculator(paidTax, budget)
+            message.text = " ${calculator(paidTax, budget)}"
         }
 
 
