@@ -51,7 +51,7 @@ class BudgetCsv(private val budgetDataRepository: BudgetDataRepository) {
                         department = record[0],
                         budgetAmount = record[1].parseAsLong())
 
-                println("${budgetData.department} = ${budgetData.budgetAmount}")
+//                println("${budgetData.department} = ${budgetData.budgetAmount}")
                 budgetDataRepository.save(budgetData)
                 counter++
             }
