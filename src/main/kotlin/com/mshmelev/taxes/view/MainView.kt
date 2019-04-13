@@ -23,7 +23,13 @@ class MainView(private val finderService: FinderService) : VerticalLayout() {
             val paidTax = finderService.getTaxPaidByZipCode(event.value)
             val budget = finderService.getBudget()
 
-            message.text = " ${calculator(paidTax, budget)}"
+            if (paidTax.toInt() == 0 || event.value.toInt() == 0) {
+                message.text = "ERROR: Enter a Valid Zip Code"
+            } else {
+
+                message.text = " ${calculator(paidTax, budget)}"
+            }
+
         }
 
 
