@@ -1,5 +1,6 @@
 package com.mshmelev.taxes.view
 
+import com.mshmelev.taxes.db.repository.IrsDataRepository
 import com.mshmelev.taxes.service.FinderService
 import com.mshmelev.taxes.utils.calculator
 import com.vaadin.flow.component.html.Label
@@ -13,7 +14,8 @@ import com.vaadin.flow.spring.annotation.UIScope
 @UIScope
 @SpringComponent
 @Route
-class MainView(private val finderService: FinderService) : VerticalLayout() {
+class MainView(private val finderService: FinderService,
+               private val irsDataRepository: IrsDataRepository) : VerticalLayout() {
     private fun initialize() {
         val message = Label()
         val textField = TextField("Zip Code", "Zip Code")
@@ -26,14 +28,16 @@ class MainView(private val finderService: FinderService) : VerticalLayout() {
             if (paidTax.toInt() == 0 || event.value.toInt() == 0) {
                 message.text = "ERROR: Enter a Valid Zip Code"
             } else {
-
-                message.text = " ${calculator(paidTax, budget)}"
+                val allTaxes = irsDataRepository.findAll()
+                val zipTaxes = irsDataRepository.findAllByZipCode(event.value)
+                message.text = "${calculator(allTaxes, zipTaxes, budget)}"
             }
 
         }
 
 
         add(textField, message)
+
     }
 
     init {
