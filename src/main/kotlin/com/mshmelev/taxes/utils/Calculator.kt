@@ -4,7 +4,7 @@ import com.mshmelev.taxes.db.domain.BudgetData
 import com.mshmelev.taxes.db.domain.IrsData
 
 
-fun calculator(allTax: MutableList<IrsData>, zipTax: List<IrsData>, budget: MutableList<BudgetData>): List<CalculatedBudget> {
+fun calculator(zipTax: List<IrsData>, budget: MutableList<BudgetData>): List<CalculatedBudget> {
     val totalFundedBudgetRatio = 779000000.0 / budget.sumByDouble { dept -> dept.budgetAmount.toDouble() }
 
     val totalTax = 2855000000.0
@@ -17,7 +17,7 @@ fun calculator(allTax: MutableList<IrsData>, zipTax: List<IrsData>, budget: Muta
     return budget.map { dept ->
         CalculatedBudget(
                 department = dept.department,
-                budgetAmount = ((dept.budgetAmount * totalFundedBudgetRatio) * myTaxPct))
+                taxesPaid = ((dept.budgetAmount * totalFundedBudgetRatio) * myTaxPct))
     }
 
 
