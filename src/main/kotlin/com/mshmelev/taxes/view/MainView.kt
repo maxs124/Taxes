@@ -8,6 +8,7 @@ import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.textfield.TextField
+import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.spring.annotation.SpringComponent
 import com.vaadin.flow.spring.annotation.UIScope
@@ -15,11 +16,13 @@ import com.vaadin.flow.spring.annotation.UIScope
 
 @UIScope
 @SpringComponent
+@PageTitle("Taxes")
 @Route
 class MainView(private val finderService: FinderService,
                private val irsDataRepository: IrsDataRepository) : VerticalLayout() {
     private fun initialize() {
-        val errorText = Label()
+        val message1 = Label()
+        val errorText = Label(" ")
         val grid = Grid(CalculatedBudget::class.java)
         val textField = TextField("Zip Code", "Zip Code")
         textField.width = "100%"
@@ -32,17 +35,23 @@ class MainView(private val finderService: FinderService,
             if (paidTax.toInt() == 0 || event.value.toInt() == 0) {
                 errorText.text = "ERROR: Enter a Valid Zip Code"
             } else {
-                val allTaxes = irsDataRepository.findAll()
+//                val allTaxes = irsDataRepository.findAll()
+                errorText.text = " "
                 val zipTaxes = irsDataRepository.findAllByZipCode(event.value)
-                val calculatedTax: List<CalculatedBudget> = calculator(allTaxes, zipTaxes, budget)
+                val calculatedTax: List<CalculatedBudget> = calculator(zipTaxes, budget)
 //                errorText.text = "${calculator(allTaxes, zipTaxes, budget)}"
-                grid.setSizeFull()
+                println("$calculatedTax")
                 grid.setItems(calculatedTax)
 
+                grid.asSingleSelect().addValueChangeListener { event ->
+                    val message = String.format("Selection changed from %s to %s",
+                            event.oldValue, event.value)
+                    message1.text = message
+                }
             }
 
         }
-        add(textField, errorText, grid)
+        add(textField, errorText, grid, message1)
     }
 
     init {
