@@ -35,7 +35,7 @@ class MainView(private val finderService: FinderService,
                 val allTaxes = irsDataRepository.findAll()
                 val zipTaxes = irsDataRepository.findAllByZipCode(event.value)
                 val calculatedTax: List<CalculatedBudget> = calculator(allTaxes, zipTaxes, budget)
-                errorText.text = "${calculator(allTaxes, zipTaxes, budget)}"
+//                errorText.text = "${calculator(allTaxes, zipTaxes, budget)}"
                 grid.setSizeFull()
                 grid.setItems(calculatedTax)
 
