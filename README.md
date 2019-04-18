@@ -27,7 +27,11 @@ $ gradle build
 ```
 $ gradle bootrun
 ```
-+ This shouldn't take to long, but once it is done navigate to [http://localhost:8080/](http://localhost:8080/) this should take you to the correct page.
++ You'll know it is done starting when you see:
+```
+Started ApplicationKt in 19.615 seconds (JVM running for 20.061)
+```
++ This shouldn't take to long, but once it is done navigate to [http://localhost:8080/](http://localhost:8080/) this should take you to the correct page. 
 
 On the page you can enter a zip code and it should give you the average amount of individual tax paid for each person in that zip code.
 
