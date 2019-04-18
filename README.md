@@ -29,7 +29,7 @@ $ gradle bootrun
 ```
 + You'll know it is done starting when you see:
 ```
-Started ApplicationKt in 19.615 seconds (JVM running for 20.061)
+Started ApplicationKt in X seconds (JVM running for X)
 ```
 + This shouldn't take to long, but once it is done navigate to [http://localhost:8080/](http://localhost:8080/) this should take you to the correct page. 
 
