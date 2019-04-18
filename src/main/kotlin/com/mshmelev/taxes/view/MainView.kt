@@ -42,12 +42,6 @@ class MainView(private val finderService: FinderService,
 //                errorText.text = "${calculator(allTaxes, zipTaxes, budget)}"
                 println("$calculatedTax")
                 grid.setItems(calculatedTax)
-
-                grid.asSingleSelect().addValueChangeListener { event ->
-                    val message = String.format("Selection changed from %s to %s",
-                            event.oldValue, event.value)
-                    message1.text = message
-                }
             }
 
         }
