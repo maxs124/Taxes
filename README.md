@@ -15,6 +15,8 @@ more complicated.
 
 + You will need to install gradle you can find info on how to do this [Here](https://gradle.org/install/).
 
++ You will also need to download the Java JDK [Here](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
 + Open a terminal/cmd window in the project directory.
 
 + Use the command:
