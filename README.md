@@ -43,6 +43,3 @@ This application was built in Kotlin/JVM and uses data collected by [Wikipedia](
 
 The application was built on [Spring](https://spring.io/) for the backend and [Vaadin](https://vaadin.com/) for the UI.
 
----
-
-Lastly, if you have any issues running the application feel free to email me maximilian.shmelev@student.tamdistrict.org
